@@ -33,7 +33,15 @@ def do_2a(X_shuf_train, y_shuf_train):
     plt.xlabel('t steps')
     plt.ylabel('amplitude')
 
-
+def do_2b():
+    return """
+    * Discussion of definition of gradient, role of $\epsilon$ in definition.
+    * Longer context means number of points used to predict final point I think. Agree? 
+    The the second derivative of a quartic fit is non $0$, i.e., a quartic fit is capable of 
+    representing changes in amplitude gradient. The longer the context, the more likely the amplitude
+    is to experience many gradients, which means the longer the context, the more sutiable the quartic fit is.
+    """
+    
 def do_2c(X_shuf_train, y_shuf_train, K_grid, examples=4):
     def basic_change_K(K, t):
         to_return = []
