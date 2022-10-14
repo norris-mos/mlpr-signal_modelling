@@ -14,7 +14,8 @@ def Phi(C, K):
 
 def make_vv(C, K):
     p = Phi(C, K)
-    return p @ np.linalg.inv((p.T @ p).T) @ Phi_row(K=K, t=1)
+    
+    return (p @ np.linalg.inv((p.T @ p).T) @ Phi_row(K=K, t=1))
 
 def do_3biii(X_shuf_train):
     ex = X_shuf_train[0] # get example
