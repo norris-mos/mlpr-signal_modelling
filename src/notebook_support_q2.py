@@ -2,24 +2,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def do_2a(X_shuf_train, y_shuf_train):
+def do_2a(X_shuf_train, y_shuf_train, example_num=0):
     def phi_quartic(t):
         return np.asarray([1, t, t ** 2, t ** 3, t ** 4])
 
     t_grid = np.arange(0,1,0.05)
 
     # plot example
-    plt.plot(t_grid, X_shuf_train[0],'r+', label = 'X')
-    plt.plot(1, y_shuf_train[0],'b.', label = "y")
+    plt.plot(t_grid, X_shuf_train[example_num],'r+', label = 'X')
+    plt.plot(1, y_shuf_train[example_num],'b.', label = "y")
     plt.xlim(0, 1.1)
 
     # perform linear fit
     X_lin = np.vstack([t_grid,np.ones(len(t_grid))]).T
-    ww_lin = np.linalg.lstsq(X_lin, X_shuf_train[0],rcond=None)[0]
+    ww_lin = np.linalg.lstsq(X_lin, X_shuf_train[example_num],rcond=None)[0]
 
     # perform polynomial fit
     X_poly = np.asarray([phi_quartic(x) for x in t_grid])
-    ww_poly  = np.linalg.lstsq(X_poly, X_shuf_train[0],rcond=None)[0]
+    ww_poly  = np.linalg.lstsq(X_poly, X_shuf_train[example_num],rcond=None)[0]
 
     # add fits to plot
     # add t = 1

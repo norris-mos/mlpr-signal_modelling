@@ -24,15 +24,14 @@ def do_1a_plot_line_and_hist(amp_data, sz = (10, 5)):
         List[plt.Figure]: The line chart and histogram.
     """
     f_line = plt.figure()
-    #figsize=sz
-    
+
     # line
     axarr = f_line.add_subplot(1, 1, 1)
     plt.plot(np.arange(0, len(amp_data), 1), amp_data)
     plt.xlabel('index')
     plt.ylabel('amplitude')
     plt.ylim(-0.8, 0.8)
-    
+
     f_hist = plt.figure()
 
     # hist
@@ -47,7 +46,7 @@ def do_1b_amp_data_to_splits(amp_data, seed = 64):
 
     # reshape
     reshaped = np.reshape(amp_data, (1605394, 21))
-    
+
     if not np.allclose(reshaped[0], amp_data[:21], rtol=1e-010):
         raise RuntimeError("Reshape process has gone wrong")
 

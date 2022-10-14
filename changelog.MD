@@ -1,5 +1,9 @@
 # changelog
 
+# 14th October
+
+* Changed `Phi`: questions asks for only 2 paramters (I dropped the need for `t`)
+* Progress summary: done all of Q3 apart from final part. Q4b needs answer from 4a to be combined with answer from 3ci.
 
 # 12th October
 
