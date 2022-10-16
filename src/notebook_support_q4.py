@@ -41,7 +41,7 @@ def do_4a(X_shuf_train, y_shuf_train, X_shuf_val, y_shuf_val):
     plt.ylabel("error")
     plt.legend()
 
-def do_4b(c1,c2,k,X_shuf_train, y_shuf_train, X_shuf_test, y_shuf_test):
+def do_4b_3ii(c1,c2,k,X_shuf_train, y_shuf_train, X_shuf_test, y_shuf_test,X_shuf_val,y_shuf_val):
   
 
     # lowest val model- C = 15
@@ -49,18 +49,30 @@ def do_4b(c1,c2,k,X_shuf_train, y_shuf_train, X_shuf_test, y_shuf_test):
     # best polynomial from Q3: C=5,K=2
     vv = q3.make_vv(C=c2,K=k)
 
-    # apply to test set and evaluate rmse
-    pred1 = X_shuf_test[:,-c1:] @ ww
-    pred2 = X_shuf_test[:,-c2:] @ vv
     
+
+
+    # apply to test set and evaluate rmse
+    pred1_train = X_shuf_train[:,-c1:] @ ww
+    pred2_train = X_shuf_train[:,-c2:] @ vv
+    pred1_val = X_shuf_val[:,-c1:] @ ww
+    pred2_val = X_shuf_val[:,-c2:] @ vv
+    pred1_test = X_shuf_test[:,-c1:] @ ww
+    pred2_test = X_shuf_test[:,-c2:] @ vv
+    # getting rmse for val and train
+    rmse_train1 = np.sqrt(((y_shuf_train - pred1_train)) ** 2).mean()
+    rmse_train2 = np.sqrt(((y_shuf_train - pred2_train)) ** 2).mean()
+    rmse_val1 = np.sqrt(((y_shuf_val - pred1_val)) ** 2).mean()
+    rmse_val2 = np.sqrt(((y_shuf_val - pred2_val)) ** 2).mean()
     # check rmse 
-    rmse1 = np.sqrt(((y_shuf_test - pred1)) ** 2).mean()
-    rmse2 = np.sqrt(((y_shuf_test - pred2)) ** 2).mean()
+    rmse1 = np.sqrt(((y_shuf_test - pred1_test)) ** 2).mean()
+    rmse2 = np.sqrt(((y_shuf_test - pred2_test)) ** 2).mean()
 
-    print(f'The RMSE for the ww model on test set with C={c1} is {rmse1}')
-    print(f'The RMSE for the vv model on test set with C={c2} and K={k} is {rmse2}')
+    print(f'The RMSE for the ww model: test: {rmse1} with C={c1} ')
+    print(f'The RMSE for the vv model:  test: {rmse2} with C={c2} & k={k}')
+    #print(f'The RMSE for the vv model: train:{rmse_train2} val: {rmse_val2} test: {rmse2} with C={c2} & k={k}')
 
-    return (rmse1,rmse2)
+    
 
 def do_4c(c1,X_shuf_val, y_shuf_val,X_shuf_train,y_shuf_train):
 
